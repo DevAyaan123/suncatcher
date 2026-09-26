@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Full CSS Cat Art</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: #f7d692;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Container for the cat */
+        .cat {
+            position: relative;
+            width: 300px;
+            height: 450px;
+        }
+
+        /* Cat Head */
+        .head {
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            width: 200px;
+            height: 150px;
+            background-color: #3d3d3d; /* Dark gray cat */
+            border-radius: 50% 50% 45% 45%;
+            z-index: 3;
+        }
+
+        /* Ears */
+        .ear {
+            position: absolute;
+            top: 20px;
+            width: 0;
+            height: 0;
+            border-bottom: 70px solid #3d3d3d;
+            border-left: 40px solid transparent;
+            border-right: 40px solid transparent;
+            z-index: 2;
+        }
+
+        .ear.left {
+            left: 55px;
+            transform: rotate(-25deg);
+        }
+
+        .ear.right {
+            right: 55px;
+            transform: rotate(25deg);
+        }
+
+        /* Inner Ear (Pink part) */
+        .ear::after {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: -25px;
+            width: 0;
+            height: 0;
+            border-bottom: 50px solid #ffb6c1;
+            border-left: 25px solid transparent;
+            border-right: 25px solid transparent;
+        }
+
+        /* Eyes */
+        .eye {
+            position: absolute;
+            top: 60px;
+            width: 35px;
+            height: 35px;
+            background-color: #222;
+            border-radius: 50%;
+        }
+
+        .eye.left { left: 45px; }
+        .eye.right { right: 45px; }
+
+        /* Eye Highlights */
+        .eye::after {
+            content: '';
+            position: absolute;
+            top: 5px;
+            left: 7px;
+            width: 12px;
+            height: 12px;
+            background-color: #fff;
+            border-radius: 50%;
+        }
+
+        /* Cheeks */
+        .blush {
+            position: absolute;
+            top: 90px;
+            width: 30px;
+            height: 15px;
+            background-color: #ff9aa2;
+            border-radius: 50%;
+            opacity: 0.6;
+        }
+
+        .blush.left { left: 25px; }
+        .blush.right { right: 25px; }
+
+        /* Nose */
+        .nose {
+            position: absolute;
+            top: 85px;
+            left: 92px;
+            width: 16px;
+            height: 10px;
+            background-color: #ffb6c1;
+            border-radius: 50% 50% 50% 50% / 30% 30% 70% 70%;
+        }
+
+        /* Mouth */
+        .mouth {
+            position: absolute;
+            top: 97px;
+            left: 88px;
+            width: 24px;
+            height: 12px;
+        }
+
+        .mouth::before, .mouth::after {
+            content: '';
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            border: 2px solid #222;
+            border-top: transparent;
+            border-radius: 0 0 50% 50%;
+        }
+
+        .mouth::before { left: 0; }
+        .mouth::after { right: 0; }
+
+        /* Whiskers */
+        .whisker {
+            position: absolute;
+            width: 45px;
+            height: 2px;
+            background-color: #222;
+        }
+
+        .whisker.left-top { top: 90px; left: -15px; transform: rotate(10deg); }
+        .whisker.left-bottom { top: 105px; left: -12px; transform: rotate(-5deg); }
+        .whisker.right-top { top: 90px; right: -15px; transform: rotate(-10deg); }
+        .whisker.right-bottom { top: 105px; right: -12px; transform: rotate(5deg); }
+
+        /* Cat Body */
+        .body-main {
+            position: absolute;
+            top: 170px;
+            left: 75px;
+            width: 150px;
+            height: 200px;
+            background-color: #3d3d3d;
+            border-radius: 60px 60px 50px 50px;
+            z-index: 2;
+        }
+
+        /* Front Legs & Paws */
+        .paw {
+            position: absolute;
+            bottom: -10px;
+            width: 35px;
+            height: 40px;
+            background-color: #3d3d3d;
+            border-radius: 20px;
+            border-bottom: 6px solid #ffb6c1; /* Pink tip paws */
+        }
+
+        .paw.left { left: 25px; }
+        .paw.right { right: 25px; }
+
+        /* Back Legs (Sitting Curve) */
+        .hind-leg {
+            position: absolute;
+            bottom: 0;
+            width: 55px;
+            height: 90px;
+            background-color: #2b2b2b; /* Slightly darker for depth */
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .hind-leg.left { left: 55px; transform: rotate(-20deg); }
+        .hind-leg.right { right: 55px; transform: rotate(20deg); }
+
+        /* Tail with simple sway animation */
+        .tail {
+            position: absolute;
+            top: 270px;
+            right: 20px;
+            width: 100px;
+            height: 35px;
+            background-color: #3d3d3d;
+            border-radius: 0 40px 40px 0;
+            transform-origin: left center;
+            z-index: 1;
+            animation: sway 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes sway {
+            0% { transform: rotate(10deg); }
+            100% { transform: rotate(-25deg); }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="cat">
+        <!-- Ears -->
+        <div class="ear left"></div>
+        <div class="ear right"></div>
+        
+        <!-- Head -->
+        <div class="head">
+            <div class="eye left"></div>
+            <div class="eye right"></div>
+            <div class="blush left"></div>
+            <div class="blush right"></div>
+            <div class="nose"></div>
+            <div class="mouth"></div>
+            <div class="whisker left-top"></div>
+            <div class="whisker left-bottom"></div>
+            <div class="whisker right-top"></div>
+            <div class="whisker right-bottom"></div>
+        </div>
+
+        <!-- Legs Sitting in Background -->
+        <div class="hind-leg left"></div>
+        <div class="hind-leg right"></div>
+
+        <!-- Body & Front Paws -->
+        <div class="body-main">
+            <div class="paw left"></div>
+            <div class="paw right"></div>
+        </div>
+
+        <!-- Animated Tail -->
+        <div class="tail"></div>
+    </div>
+
+</body>
+</html>
